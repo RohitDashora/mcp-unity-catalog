@@ -1,0 +1,26 @@
+flowchart TD
+    A[Operation Start] --> B{Check Config}
+    B -->|Missing| C[Config Error]
+    B -->|Valid| D{Check Environment}
+    
+    D -->|No ENV| E[Use Config Token]
+    D -->|Has ENV| F[Use ENV Token]
+    
+    E --> G[Initialize Client]
+    F --> G
+    
+    G --> H{Connection Success?}
+    H -->|No| I[Connection Error]
+    H -->|Yes| J[Execute Operation]
+    
+    J --> K{Operation Success?}
+    K -->|No| L[Operation Error]
+    K -->|Yes| M[Return Results]
+    
+    C --> N[User-Friendly Error]
+    I --> N
+    L --> N
+    
+    style A fill:#e3f2fd
+    style M fill:#e8f5e8
+    style N fill:#ffebee 

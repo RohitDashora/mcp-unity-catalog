@@ -1,0 +1,45 @@
+graph TB
+    subgraph "User Interface Layer"
+        CLI[CLI Interface<br/>mcp_cli.py]
+        LIB[Python Library<br/>mcp_client.py]
+    end
+    
+    subgraph "Core Components"
+        MGR[MCPClientManager<br/>Server Management]
+        CLIENT[MCPClient<br/>Individual Server Client]
+        DISCOVER[Tool Discovery<br/>mcp_discovery.py]
+    end
+    
+    subgraph "Configuration Layer"
+        CONFIG[mcp.json<br/>Server & Tool Config]
+        ENV[Environment Variables<br/>MCP_*_TOKEN]
+        BACKUP[Backup Files<br/>.backup]
+    end
+    
+    subgraph "External Services"
+        WIKI[Wikipedia Search<br/>MCP Server]
+        DOCS[Documentation Search<br/>MCP Server]
+        DATABRICKS[Databricks MCP SDK]
+    end
+    
+    CLI --> MGR
+    LIB --> MGR
+    MGR --> CLIENT
+    DISCOVER --> MGR
+    
+    CLIENT --> DATABRICKS
+    DATABRICKS --> WIKI
+    DATABRICKS --> DOCS
+    
+    MGR --> CONFIG
+    CLIENT --> ENV
+    DISCOVER --> BACKUP
+    
+    style CLI fill:#e1f5fe
+    style LIB fill:#e1f5fe
+    style MGR fill:#f3e5f5
+    style CLIENT fill:#f3e5f5
+    style DISCOVER fill:#f3e5f5
+    style CONFIG fill:#e8f5e8
+    style ENV fill:#e8f5e8
+    style DATABRICKS fill:#fff3e0 

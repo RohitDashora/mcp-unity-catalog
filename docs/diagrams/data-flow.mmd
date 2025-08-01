@@ -1,0 +1,38 @@
+flowchart TD
+    A[User Input] --> B{Command Type}
+    
+    B -->|list-servers| C[Load Config]
+    B -->|list-tools| D[Initialize Client]
+    B -->|search| E[Execute Tool]
+    B -->|discover| F[Tool Discovery]
+    B -->|interactive| G[Interactive Mode]
+    
+    C --> H[Display Servers]
+    D --> I[Connect to MCP Server]
+    E --> I
+    F --> J[Query All Servers]
+    G --> K[Command Loop]
+    
+    I --> L{Use Environment Variables?}
+    L -->|Yes| M[Load from ENV]
+    L -->|No| N[Load from Config]
+    
+    M --> O[Create WorkspaceClient]
+    N --> O
+    O --> P[Create DatabricksMCPClient]
+    P --> Q[Execute MCP Operations]
+    
+    J --> R[Discover Tools]
+    R --> S[Update Config File]
+    
+    K --> T[Process Commands]
+    T --> U[Display Results]
+    
+    Q --> U
+    H --> U
+    S --> U
+    
+    style A fill:#e3f2fd
+    style U fill:#e8f5e8
+    style M fill:#fff3e0
+    style N fill:#fff3e0 

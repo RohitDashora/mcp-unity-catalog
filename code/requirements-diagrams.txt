@@ -1,0 +1,17 @@
+# Diagram generation dependencies
+# Note: This requires Node.js and npm to be installed
+
+# Core dependencies
+-r requirements.txt
+
+# Python dependencies for diagram generation
+# (Currently only uses standard library, but keeping for future enhancements)
+
+# Node.js dependencies (install separately):
+# npm install -g @mermaid-js/mermaid-cli
+
+# Usage:
+# 1. Install Node.js and npm
+# 2. Install mermaid-cli: npm install -g @mermaid-js/mermaid-cli
+# 3. Install Python dependencies: pip install -r requirements-diagrams.txt
+# 4. Generate diagrams: ./scripts/generate_diagrams.sh 

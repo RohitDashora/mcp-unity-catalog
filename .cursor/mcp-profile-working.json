@@ -1,0 +1,34 @@
+{
+  "mcpServers": {
+    "wikipedia-search": {
+      "type": "streamable-http",
+      "url": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mcp/vector-search/rohit_dashora/docsearch",
+      "headers": {
+        "Authorization": "Bearer ${PROFILE_TOKEN}"
+      },
+      "profile": "e2-demo/",
+      "note": "Databricks MCP server using profile authentication"
+    },
+    "doc-search": {
+      "type": "streamable-http",
+      "url": "https://e2-demo-field-eng.cloud.databricks.com/api/2.0/mcp/vector-search/mervekarali_catalog/multi_agent",
+      "headers": {
+        "Authorization": "Bearer ${PROFILE_TOKEN}"
+      },
+      "profile": "e2-demo/",
+      "note": "Databricks MCP server using profile authentication"
+    }
+  },
+  "tools": {
+    "rohit_dashora__docsearch__wikipedia_vi": {
+      "description": "A vector search-based retrieval tool for querying indexed embeddings using vector index rohit_dashora.docsearch.wikipedia_vi",
+      "input_schema": null,
+      "server": "wikipedia-search"
+    },
+    "mervekarali_catalog__multi_agent__databricks_documentation_vs_index": {
+      "description": "A vector search-based retrieval tool for querying indexed embeddings using vector index mervekarali_catalog.multi_agent.databricks_documentation_vs_index",
+      "input_schema": null,
+      "server": "doc-search"
+    }
+  }
+} 

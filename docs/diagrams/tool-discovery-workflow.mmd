@@ -1,0 +1,32 @@
+sequenceDiagram
+    participant U as User
+    participant CLI as CLI Tool
+    participant DIS as Discovery Script
+    participant MGR as Client Manager
+    participant CLIENT as MCP Client
+    participant SDK as Databricks SDK
+    participant MCP as MCP Server
+    participant CONFIG as mcp.json
+    
+    U->>CLI: discover --backup
+    CLI->>DIS: discover_all_tools()
+    DIS->>MGR: Create ClientManager
+    MGR->>CONFIG: Load server config
+    
+    loop For each server
+        DIS->>MGR: get_client(server_name)
+        MGR->>CLIENT: Create MCPClient
+        CLIENT->>SDK: Initialize connection
+        SDK->>MCP: Connect to server
+        MCP-->>SDK: Connection established
+        CLIENT->>SDK: list_tools()
+        SDK->>MCP: tools/list request
+        MCP-->>SDK: Tool information
+        SDK-->>CLIENT: Tool list
+        CLIENT-->>DIS: Tool details
+    end
+    
+    DIS->>CONFIG: Update with tool info
+    CONFIG-->>DIS: Config updated
+    DIS-->>CLI: Discovery complete
+    CLI-->>U: Success message 

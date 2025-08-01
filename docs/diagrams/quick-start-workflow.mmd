@@ -1,0 +1,22 @@
+flowchart TD
+    A[Clone Repository] --> B[Setup Virtual Environment]
+    B --> C[Install Dependencies]
+    C --> D[Configure Databricks Profile]
+    D --> E[Discover Vector Search URLs]
+    E --> F[Test Setup]
+    F --> G[Start Using MCP Client]
+    
+    B --> B1[python3 -m venv mcp]
+    B --> B2[source mcp/bin/activate]
+    C --> C1[pip install -r code/requirements.txt]
+    C --> C2[pip install databricks-cli]
+    D --> D1[databricks configure --profile your-profile]
+    E --> E1[python scripts/find_vector_urls.py]
+    E --> E2[cp .cursor/mcp-found-urls.json .cursor/mcp.json]
+    F --> F1[python code/mcp_cli.py list-servers]
+    G --> G1[python code/mcp_cli.py search 'query']
+    
+    style A fill:#e3f2fd
+    style G fill:#e8f5e8
+    style E1 fill:#fff3e0
+    style D1 fill:#fff3e0 

@@ -1,0 +1,57 @@
+graph TB
+    subgraph "User Interface"
+        CLI[CLI Tool]
+        LIB[Python Library]
+    end
+    
+    subgraph "Core System"
+        MGR[Client Manager]
+        CLIENT[MCP Client]
+        DISCOVER[Tool Discovery]
+        URL_FINDER[URL Finder]
+    end
+    
+    subgraph "Authentication"
+        PROFILE[Profile Auth]
+        ENV[Environment Variables]
+        CONFIG_TOKENS[Config Tokens]
+    end
+    
+    subgraph "Configuration"
+        CONFIG[mcp.json]
+        PROFILE_CONFIG[~/.databrickscfg]
+    end
+    
+    subgraph "External"
+        SDK[Databricks SDK]
+        MCP[MCP Servers]
+        CLI_AUTH[Databricks CLI]
+    end
+    
+    CLI --> MGR
+    LIB --> MGR
+    MGR --> CLIENT
+    DISCOVER --> MGR
+    URL_FINDER --> CONFIG
+    CLIENT --> SDK
+    SDK --> MCP
+    MGR --> CONFIG
+    CLIENT --> PROFILE
+    CLIENT --> ENV
+    CLIENT --> CONFIG_TOKENS
+    PROFILE --> PROFILE_CONFIG
+    PROFILE --> CLI_AUTH
+    
+    style CLI fill:#e1f5fe
+    style LIB fill:#e1f5fe
+    style MGR fill:#f3e5f5
+    style CLIENT fill:#f3e5f5
+    style DISCOVER fill:#f3e5f5
+    style URL_FINDER fill:#f3e5f5
+    style CONFIG fill:#e8f5e8
+    style PROFILE fill:#fff3e0
+    style ENV fill:#e8f5e8
+    style CONFIG_TOKENS fill:#e8f5e8
+    style PROFILE_CONFIG fill:#fff3e0
+    style SDK fill:#fff3e0
+    style CLI_AUTH fill:#fff3e0 

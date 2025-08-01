@@ -1,0 +1,26 @@
+flowchart TD
+    A[Start Interactive Mode] --> B[Initialize Client]
+    B --> C[Display Available Commands]
+    C --> D[Wait for User Input]
+    
+    D --> E{Command Type}
+    E -->|list| F[Display Tools]
+    E -->|info| G[Show Tool Details]
+    E -->|call| H[Execute Tool]
+    E -->|search| I[Search Wikipedia]
+    E -->|quit| J[Exit Mode]
+    
+    F --> K[Format and Display]
+    G --> K
+    H --> L[Execute with Parameters]
+    I --> M[Search with Query]
+    
+    K --> D
+    L --> N[Display Results]
+    M --> N
+    N --> D
+    
+    J --> O[Cleanup and Exit]
+    
+    style A fill:#e3f2fd
+    style O fill:#e8f5e8 

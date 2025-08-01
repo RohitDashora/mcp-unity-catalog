@@ -1,0 +1,46 @@
+classDiagram
+    class MCPClientManager {
+        -config_path: str
+        -clients: Dict[str, MCPClient]
+        +__init__(config_path)
+        +get_client(server_name)
+        +list_servers()
+        +initialize_client(server_name)
+        +display_servers()
+        -_load_config()
+    }
+    
+    class MCPClient {
+        -workspace_hostname: str
+        -token: str
+        -server_url: str
+        -mcp_client: DatabricksMCPClient
+        -tools: List[ToolInfo]
+        -_initialized: bool
+        +__init__(workspace_hostname, token, server_url)
+        +initialize()
+        +list_tools()
+        +get_tool_info(tool_name)
+        +call_tool(tool_name, parameters)
+        +display_tools(detailed)
+        +search_wikipedia(query)
+    }
+    
+    class ToolInfo {
+        +name: str
+        +description: str
+        +input_schema: Optional[Dict]
+        +__str__()
+    }
+    
+    class MCPDiscovery {
+        +discover_all_tools(config_path)
+        +discover_tools_for_server(client, server_name)
+        +update_mcp_config(config_path, discovered_tools)
+        +display_discovered_tools(tools)
+    }
+    
+    MCPClientManager --> MCPClient : manages
+    MCPClient --> ToolInfo : contains
+    MCPDiscovery --> MCPClientManager : uses
+    MCPDiscovery --> ToolInfo : discovers 

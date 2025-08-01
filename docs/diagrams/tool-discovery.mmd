@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant U as User
+    participant CLI as CLI
+    participant MGR as Manager
+    participant MCP as MCP Server
+    participant CONFIG as Config
+    
+    U->>CLI: discover
+    CLI->>MGR: Create manager
+    MGR->>MCP: Query tools
+    MCP-->>MGR: Tool list
+    MGR->>CONFIG: Update config
+    CLI-->>U: Complete 

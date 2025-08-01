@@ -1,0 +1,63 @@
+flowchart TD
+    A[User Wants to Setup MCP Client] --> B{Setup Experience?}
+    
+    B -->|Quick Start| C[5-Minute Setup]
+    B -->|Detailed| D[Step-by-Step Guide]
+    B -->|Advanced| E[Manual Configuration]
+    
+    C --> C1[Clone Repository]
+    C1 --> C2[Setup Virtual Environment]
+    C2 --> C3[Install Dependencies]
+    C3 --> C4[Configure Profile]
+    C4 --> C5[Auto-Discover URLs]
+    C5 --> C6[Test Setup]
+    
+    D --> D1[Follow First-Time Setup Guide]
+    D1 --> D2[Choose Authentication Method]
+    D2 --> D3[Find URLs Manually]
+    D3 --> D4[Configure mcp.json]
+    D4 --> D5[Test Each Step]
+    
+    E --> E1[Manual Environment Setup]
+    E1 --> E2[Custom Authentication]
+    E2 --> E3[Manual URL Construction]
+    E3 --> E4[Advanced Configuration]
+    E4 --> E5[Custom Testing]
+    
+    C6 --> F[Ready to Use]
+    D5 --> F
+    E5 --> F
+    
+    subgraph "Authentication Options"
+        G1[Profile Authentication]
+        G2[Environment Variables]
+        G3[Direct Tokens]
+    end
+    
+    subgraph "URL Discovery Methods"
+        H1[Automated Script]
+        H2[Databricks UI]
+        H3[Databricks CLI]
+        H4[Manual Construction]
+    end
+    
+    C4 --> G1
+    D2 --> G1
+    D2 --> G2
+    D2 --> G3
+    E2 --> G2
+    E2 --> G3
+    
+    C5 --> H1
+    D3 --> H2
+    D3 --> H3
+    D3 --> H4
+    E3 --> H4
+    
+    style A fill:#e3f2fd
+    style F fill:#e8f5e8
+    style C fill:#fff3e0
+    style D fill:#e1f5fe
+    style E fill:#f3e5f5
+    style G1 fill:#fff3e0
+    style H1 fill:#fff3e0 

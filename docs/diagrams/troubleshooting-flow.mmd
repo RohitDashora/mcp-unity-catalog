@@ -1,0 +1,63 @@
+flowchart TD
+    A[Setup Issue Encountered] --> B{Issue Type?}
+    
+    B -->|Authentication| C[Auth Problems]
+    B -->|Connection| D[Connection Issues]
+    B -->|Configuration| E[Config Problems]
+    B -->|URL Discovery| F[URL Issues]
+    
+    C --> C1{Profile Auth?}
+    C1 -->|Yes| C2[Check Profile Config]
+    C1 -->|No| C3[Check Token/ENV]
+    C2 --> C4[databricks auth token --profile]
+    C3 --> C5[Verify Token/ENV Variables]
+    C4 --> C6{Token Valid?}
+    C5 --> C6
+    C6 -->|No| C7[Reconfigure Profile/Token]
+    C6 -->|Yes| C8[Auth Fixed]
+    
+    D --> D1[Check Workspace URL]
+    D1 --> D2[Verify Network Access]
+    D2 --> D3[Test Connection]
+    D3 --> D4{Connection OK?}
+    D4 -->|No| D5[Network/Firewall Issue]
+    D4 -->|Yes| D6[Connection Fixed]
+    
+    E --> E1[Check mcp.json Format]
+    E1 --> E2[Validate JSON Syntax]
+    E2 --> E3[Check Required Fields]
+    E3 --> E4{Config Valid?}
+    E4 -->|No| E5[Fix Configuration]
+    E4 -->|Yes| E7[Config Fixed]
+    
+    F --> F1{Using Auto Script?}
+    F1 -->|Yes| F2[Check CLI Access]
+    F1 -->|No| F3[Manual URL Check]
+    F2 --> F4[Verify Unity Catalog Access]
+    F3 --> F5[Check Catalog/Schema Names]
+    F4 --> F6{Access OK?}
+    F5 --> F6
+    F6 -->|No| F7[Fix Permissions/Names]
+    F6 -->|Yes| F8[URL Fixed]
+    
+    C7 --> I[Retry Setup]
+    D5 --> I
+    E5 --> I
+    F7 --> I
+    
+    C8 --> J[Setup Complete]
+    D6 --> J
+    E7 --> J
+    F8 --> J
+    
+    I --> K{Setup Works?}
+    K -->|No| L[Check Documentation]
+    K -->|Yes| J
+    
+    L --> M[Contact Support]
+    
+    style A fill:#ffebee
+    style J fill:#e8f5e8
+    style M fill:#ffebee
+    style C2 fill:#fff3e0
+    style F2 fill:#fff3e0 

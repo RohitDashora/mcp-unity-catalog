@@ -1,0 +1,40 @@
+graph TD
+    subgraph "Core Dependencies"
+        A[databricks-mcp]
+        B[databricks-sdk]
+        C[requests]
+    end
+    
+    subgraph "Our Components"
+        D[mcp_client.py]
+        E[mcp_cli.py]
+        F[mcp_discovery.py]
+    end
+    
+    subgraph "Configuration"
+        G[mcp.json]
+        H[Environment Variables]
+    end
+    
+    subgraph "Scripts"
+        I[setup_env.sh]
+        J[load_env.sh]
+        K[load_env_simple.sh]
+    end
+    
+    D --> A
+    D --> B
+    E --> D
+    F --> D
+    D --> G
+    D --> H
+    I --> H
+    J --> H
+    K --> H
+    
+    style A fill:#fff3e0
+    style B fill:#fff3e0
+    style C fill:#fff3e0
+    style D fill:#e3f2fd
+    style E fill:#e3f2fd
+    style F fill:#e3f2fd 
