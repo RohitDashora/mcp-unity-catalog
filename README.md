@@ -1,6 +1,24 @@
 # MCP (Model Context Protocol) Client for Databricks
 
+> **⚠️ DEMO PROJECT** - This is a demonstration project showcasing MCP client capabilities for Databricks vector search. It's designed for learning, testing, and prototyping purposes. Not intended for production use.
+
 A clean, well-structured Python client for interacting with Databricks MCP servers. This project provides tools to discover, explore, and interact with MCP endpoints, including tool listing, schema viewing, and tool execution.
+
+## 🎯 **Demo Purpose**
+
+This project demonstrates:
+- **MCP Protocol Implementation** - How to build clients for Databricks MCP servers
+- **Vector Search Integration** - Connecting to Databricks vector search endpoints
+- **Authentication Patterns** - Profile-based and token-based authentication
+- **Tool Discovery** - Dynamic tool listing and schema inspection
+- **CLI Development** - Building interactive command-line interfaces
+- **Documentation Practices** - Comprehensive documentation with visual aids
+
+**Use Cases:**
+- 🧪 **Learning** - Understand MCP protocol and Databricks integration
+- 🔬 **Testing** - Test vector search capabilities and authentication
+- 🛠️ **Prototyping** - Build proof-of-concepts for MCP clients
+- 📚 **Reference** - Code examples and patterns for MCP development
 
 ## 🚀 Features
 
